@@ -20,13 +20,17 @@ export default function Descover() {
     getTopRated(params.type, '1')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  useEffect(() => {
+    getTopRated(params.type, '1')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [params.type])
   //search popular
   async function Search(item, type) {
     let { data } = await axios.get(`https://api.themoviedb.org/3/search/${type}?query=${item}`, { headers })
     setTopRated(data)
   }
-  return <><div className='my-4'>
+  return <>
+  <div className='my-4'>
     {/* <nav aria-label='...' className='pt-5'>
       <ul className='pagination pagination-sm d-flex justify-content-center'>
         <li onClick={() => getTopRated(params.type, '1')} className='page-item p-1'>

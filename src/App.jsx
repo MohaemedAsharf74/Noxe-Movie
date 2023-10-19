@@ -4,7 +4,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import Layout from './Components/Layout/Layout';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
@@ -20,14 +20,14 @@ import Protected from './Components/Protected/Protected';
 import NotFound from './Components/NotFound/NotFound';
 
 function App() {
-  let routes = createBrowserRouter([{
+  let routes = createHashRouter([{
     path: "", element: <Layout />, children: [{
       index: true, element: <Protected> <Home /></Protected>
     },
     { path: "/signup", element: <Register /> },
     { path: "/login", element: <Login /> },
     { path: "/topRated/:type", element: <Protected> <Descover /></Protected> },
-    { path: '*', element: <NotFound />},
+    { path: '*', element: <Protected><NotFound /></Protected> },
     { path: '/detailes/:id/:type', element: <Protected><Details /></Protected> },
     { path: '/trending/:type', element: <Protected><Trending /></Protected> },
     { path: '/popular/:type', element: <Protected> <Popular /> </Protected> }

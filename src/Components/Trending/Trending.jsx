@@ -12,15 +12,19 @@ export default function Trending() {
         dispatch(getTrending(params.type))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    useEffect(() => {
+        dispatch(getTrending(params.type))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [params.type])
     return <>
         <div className="row g-4 pt-4 my-4">
 
             {trend.map((ele, ind) => (
                 <div key={ind} className=' col-md-3 '>
-                    <Link className='nav-link '
+                    <Link className='nav-link mov '
                         to={`/detailes/${ele.id}/${ele.media_type}`}
                     >
-                        < div className='position-relative mov' >
+                        < div className='position-relative ' >
                             {ele.poster_path ? <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.poster_path}`} alt="" />
                                 : <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.profile_path}`} alt="" />}
                             {ele.original_name ? <h6 className=' mt-2 text-white fs-5 text-center'>

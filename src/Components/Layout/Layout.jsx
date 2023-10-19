@@ -11,7 +11,7 @@ export default function Layout() {
     return <>
         <div className='pt-5'>
             <Navbar />
-            <div className='py-3'>
+            <div className='py-3 lay'>
                 <Outlet />
             </div>
             

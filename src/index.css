@@ -55,8 +55,26 @@ code {
   padding: 15px !important;
   border-radius: 15px;
 }
+
 .NotFound {
   width: 50%;
-  height: 50%;    
+  height: 50%;
   margin: auto;
 }
+
+.lay {
+  min-height: calc(100vh - 300px);
+}
+.video{
+  transition: 0.3s;
+  cursor: pointer;
+  max-width:fit-content ;
+}
+
+.video:hover>i{
+color: red;
+}
+.video:hover>h5{
+  color: red !important;
+  }
+  
