@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,400&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +13,50 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.backgroundimg {
+  background-color: rgba(31, 32, 32, 0.6);
+  position: relative;
+  min-height: 100vh;
+}
+
+.backgroundimg::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  z-index: -1;
+  height: 100%;
+  background-image: url("./Assets/movie-background-collage.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.navterm {
+  font-weight: bold;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(99, 255, 12, 0.5), rgba(0, 255, 255, 1), rgb(232, 255, 255));
+}
+
+.error {
+  color: #fbff00;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.mov {
+  padding: 0 !important;
+  transition: padding .5s !important;
+}
+
+.mov:hover {
+  border: 1px solid rgb(182, 238, 13);
+  padding: 15px !important;
+  border-radius: 15px;
+}
+.NotFound {
+  width: 50%;
+  height: 50%;    
+  margin: auto;
 }
