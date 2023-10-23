@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { ThreeDots } from 'react-loader-spinner'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -85,6 +86,10 @@ export default function Register() {
                 </div>
 
             </form>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Register</title>
+            </Helmet>
         </div>
     </>
 }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 
 export default function Popular() {
@@ -44,10 +45,10 @@ export default function Popular() {
             {populars.results !== null ? <div className="row g-4 pt-4">
                 {populars.results?.map((ele, ind) => (
                     <div key={ind} className=' col-md-3'>
-                        <Link className='nav-link'
+                        <Link className='nav-link mov'
                             to={`/detailes/${ele.id}/${params.type}`}
                         >
-                            < div className='position-relative mov' >
+                            < div className='position-relative ' >
                                 {ele.poster_path ? <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.poster_path}`} alt="" />
                                     : <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.profile_path}`} alt="" />}
                                 {ele.name ? <h6 className=' mt-2 text-white fs-5 text-center'>
@@ -98,6 +99,10 @@ export default function Popular() {
                     </ul>
                 </nav>
             </div > : ''}
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{params.type}</title>
+            </Helmet>
         </div>
     </>
 }

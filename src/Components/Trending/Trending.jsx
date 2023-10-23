@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTrending } from '../../Redux/trendSlice';
 import { Link, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function Trending() {
     let dispatch = useDispatch()
@@ -18,7 +19,6 @@ export default function Trending() {
     }, [params.type])
     return <>
         <div className="row g-4 pt-4 my-4">
-
             {trend.map((ele, ind) => (
                 <div key={ind} className=' col-md-3 '>
                     <Link className='nav-link mov '
@@ -41,5 +41,9 @@ export default function Trending() {
             )
             )}
         </div >
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>{params.type}</title>
+        </Helmet>
     </>
 }

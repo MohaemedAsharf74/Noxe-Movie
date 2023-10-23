@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { getTrendingTv } from '../../Redux/trendingTvSlice';
 import { getTrendingPeople } from '../../Redux/trendPeople';
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
 
@@ -46,7 +47,7 @@ export default function Home() {
                     <Slider {...settings}>
                         {movie.map((item, index) => (
                             <div className='d-flex align-items-center justify-content-center '>
-                                <div key={index} className=' col-md-10 ' >
+                                <div key={index} className=' col-md-10 w-100 ' >
                                     <Link className='nav-link mov'
                                         to={`/detailes/${item.id}/${item.media_type}`}
                                     >
@@ -86,7 +87,7 @@ export default function Home() {
                     <Slider {...settings}>
                         {tv.map((item, index) => (
                             <div className='d-flex align-items-center justify-content-center '>
-                                <div key={index} className=' col-md-10 ' >
+                                <div key={index} className=' col-md-10 w-100 ' >
                                     <Link
                                         className='nav-link mov'
                                         to={`/detailes/${item.id}/${item.media_type}`}
@@ -127,7 +128,7 @@ export default function Home() {
                     <Slider {...settings}>
                         {people.map((item, index) => (
                             <div className='d-flex align-items-center justify-content-center '>
-                                <div key={index} className=' col-md-10 ' >
+                                <div key={index} className=' col-md-10 w-100' >
                                     <Link
                                         className='nav-link mov'
                                         to={`/detailes/${item.id}/${item.media_type}`}
@@ -154,5 +155,9 @@ export default function Home() {
                 <i className='fa-solid fa-spinner fa-2x fa-spin text-white'></i>
             </div>
         )}
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Home</title>
+        </Helmet>
     </>
 }

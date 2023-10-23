@@ -18,12 +18,12 @@ export default function Navbar() {
     return <>
         <div className='pt-2'>
             <nav className="navbar navbar-expand-lg bg-body-tertiary navterm">
-                <div className="container-fluid">
-                    <NavLink className="navbar-brand" href="#">Noxe</NavLink>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                <div className="container">
+                    <NavLink className="navbar-brand" to={'/'}>Noxe</NavLink>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse text-center" id="navbarSupportedContent">
                         {token ? <div className='w-100 '>
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
                                 <li className="nav-item">
@@ -65,27 +65,23 @@ export default function Navbar() {
                                 </li>
                             </ul>
                         </div> : ''}
-
-
-                        <form className="d-flex" >
-                            <ul className="navbar-nav mb-2 mb-lg-0 ms-auto" >
-                                <li className="nav-item d-flex align-items-center">
-                                    <i className='fab mx-2 fa-facebook'></i>
-                                    <i className='fab mx-2 fa-twitter'></i>
-                                    <i className='fab mx-2 fa-instagram'></i>
-                                    <i className='fab mx-2 fa-soundcloud'></i>
+                        <ul className="navbar-nav mb-2 mb-lg-0 ms-auto " >
+                            <li className="nav-item d-flex justify-content-center align-items-center">
+                                <i className='fab mx-2 fa-facebook'></i>
+                                <i className='fab mx-2 fa-twitter'></i>
+                                <i className='fab mx-2 fa-instagram'></i>
+                                <i className='fab mx-2 fa-soundcloud'></i>
+                            </li>
+                            {token != null ? <li className="nav-item">
+                                <Link onClick={logout} className="nav-link" to="login">Logout</Link>
+                            </li> :
+                                <>  <li className="nav-item">
+                                    <Link className="nav-link active" to='/signup'>Register</Link>
                                 </li>
-                                {token != null ? <li className="nav-item">
-                                    <Link onClick={logout} className="nav-link" to="login">Logout</Link>
-                                </li> :
-                                    <>  <li className="nav-item">
-                                        <Link className="nav-link active" to='/signup'>Register</Link>
-                                    </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-link active" to='login'>Login</Link>
-                                        </li> </>}
-                            </ul>
-                        </form>
+                                    <li className="nav-item">
+                                        <Link className="nav-link active" to='login'>Login</Link>
+                                    </li> </>}
+                        </ul>
                     </div>
                 </div>
             </nav>

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 
 export default function Descover() {
@@ -23,15 +24,15 @@ export default function Descover() {
   useEffect(() => {
     getTopRated(params.type, '1')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [params.type])
+  }, [params.type])
   //search popular
   async function Search(item, type) {
     let { data } = await axios.get(`https://api.themoviedb.org/3/search/${type}?query=${item}`, { headers })
     setTopRated(data)
   }
   return <>
-  <div className='my-4'>
-    {/* <nav aria-label='...' className='pt-5'>
+    <div className='my-4'>
+      {/* <nav aria-label='...' className='pt-5'>
       <ul className='pagination pagination-sm d-flex justify-content-center'>
         <li onClick={() => getTopRated(params.type, '1')} className='page-item p-1'>
           <Link className='page-link bg-transparent text-white '>1</Link>
@@ -65,66 +66,70 @@ export default function Descover() {
         </li>
       </ul>
     </nav> */}
-    <form action="" className="form-inline mb-3 d-flex justify-content-center" >
-      <input onChange={(e) => { e.target.value === '' ? getTopRated(params.type, '1') : Search(e.target.value, params.type) }} className="form-control mr-sm-2 w-50" type="search" placeholder="Search" aria-label="Search" />
-    </form>
-    {topRated.results !== null ? <div className="row g-4 pt-4">
-      {topRated.results?.map((ele, ind) => (
-        <div key={ind} className=' col-md-3'>
-          <Link className='nav-link'
-            to={`/detailes/${ele.id}/${params.type}`}
-          >
-            < div className='position-relative mov' >
-              {ele.poster_path ? <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.poster_path}`} alt="" />
-                : <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.profile_path}`} alt="" />}
-              {ele.name ? <h6 className=' mt-2 text-white fs-5 text-center'>
-                {ele.name}
-              </h6> : <h6 className=' mt-2 text-white fs-5 text-center'>
-                {ele.title?.split(' ').slice(0, 5).join(' ')}
-              </h6>}
-              {ele.vote_average ? <span className=' position-absolute top-0 end-0 bg-primary px-2 py-2 text-white'>
-                {ele.vote_average?.toFixed(1)}
-              </span> : ''}
-            </div>
-          </Link>
-        </div>
-      )
-      )}
-      <nav aria-label='...' className='py-5'>
-        <ul className='pagination pagination-sm d-flex justify-content-center'>
-          <li onClick={() => getTopRated(params.type, '1')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>1</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '2')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>2</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '3')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>3</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '4')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>4</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '5')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>5</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '6')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>6</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '7')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>7</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '8')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>8</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '9')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>9</Link>
-          </li>
-          <li onClick={() => getTopRated(params.type, '10')} className='page-item p-1'>
-            <Link className='page-link bg-transparent text-white '>10</Link>
-          </li>
-        </ul>
-      </nav>
-    </div > : ''}
-  </div>
+      <form action="" className="form-inline mb-3 d-flex justify-content-center" >
+        <input onChange={(e) => { e.target.value === '' ? getTopRated(params.type, '1') : Search(e.target.value, params.type) }} className="form-control mr-sm-2 w-50" type="search" placeholder="Search" aria-label="Search" />
+      </form>
+      {topRated.results !== null ? <div className="row g-4 pt-4">
+        {topRated.results?.map((ele, ind) => (
+          <div key={ind} className=' col-md-3'>
+            <Link className='nav-link mov'
+              to={`/detailes/${ele.id}/${params.type}`}
+            >
+              < div className='position-relative ' >
+                {ele.poster_path ? <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.poster_path}`} alt="" />
+                  : <img className='w-100' src={`https://image.tmdb.org/t/p/original${ele?.profile_path}`} alt="" />}
+                {ele.name ? <h6 className=' mt-2 text-white fs-5 text-center'>
+                  {ele.name}
+                </h6> : <h6 className=' mt-2 text-white fs-5 text-center'>
+                  {ele.title?.split(' ').slice(0, 5).join(' ')}
+                </h6>}
+                {ele.vote_average ? <span className=' position-absolute top-0 end-0 bg-primary px-2 py-2 text-white'>
+                  {ele.vote_average?.toFixed(1)}
+                </span> : ''}
+              </div>
+            </Link>
+          </div>
+        )
+        )}
+        <nav aria-label='...' className='py-5'>
+          <ul className='pagination pagination-sm d-flex justify-content-center'>
+            <li onClick={() => getTopRated(params.type, '1')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>1</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '2')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>2</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '3')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>3</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '4')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>4</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '5')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>5</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '6')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>6</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '7')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>7</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '8')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>8</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '9')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>9</Link>
+            </li>
+            <li onClick={() => getTopRated(params.type, '10')} className='page-item p-1'>
+              <Link className='page-link bg-transparent text-white '>10</Link>
+            </li>
+          </ul>
+        </nav>
+      </div > : ''}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{params.type}</title>
+      </Helmet>
+    </div>
   </>
 }

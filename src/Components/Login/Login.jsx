@@ -5,6 +5,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
 import { userContext } from '../../context/userToken';
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
     let [error, setError] = useState('');
@@ -74,6 +75,10 @@ export default function Login() {
                 </div>
 
             </form>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Login</title>
+            </Helmet>
         </div>
     </>
 }
